@@ -24,7 +24,6 @@ export default function Sidebar() {
     }
     if (isActive === "false") {
       <div>
-        {console.log(isActive)}
         <PostTraining />
       </div>;
     }
