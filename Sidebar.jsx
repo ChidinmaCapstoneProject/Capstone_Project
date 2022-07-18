@@ -26,7 +26,6 @@ export default function Sidebar() {
       <div>
         {console.log(isActive)}
         <PostTraining />
-        {/* <Connect /> */}
       </div>;
     }
   }
