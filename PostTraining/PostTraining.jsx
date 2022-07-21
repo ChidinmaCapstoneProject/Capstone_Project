@@ -1,5 +1,6 @@
 import React from "react";
-import { useRef, useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import "./PostTraining.css";
 import axios from "../../../api/axios";
@@ -7,45 +8,48 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TimeRangePicker from "@wojtekmaj/react-timerange-picker";
-import { format } from "date-fns";
+import { TimeRangeInput } from "@mantine/dates";
+import NavBar from "../../NavBar/NavBar";
+import Test from "../../Trainee/FindTraining/Test";
 const POST_URL = "/training";
 
-export default function PostTraining({ fName, setFName }) {
+export default function PostTraining() {
   const [email, setEmail] = useState("");
   const [trainingType, setTrainingType] = useState("");
   const [description, setDecription] = useState("");
   const [price, setPrice] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const { userName } = useContext(AuthContext);
-  const [currentDate, setCurrentDate] = useState(
-    format(new Date(), "MM/dd/yyyy")
-  );
-  console.log("currentDate: ", typeof currentDate);
-  const [start, setStart] = useState(new Date());
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
-  console.log("full Name", userName);
-  // console.log("timerange", timeRange);
+  const startTime = new Date();
+  const endTime = new Date();
+  const [day, setDay] = useState(new Date());
+  const [timeRange, setTimeRange] = useState(startTime, endTime);
+  console.log("timeRange: ", timeRange);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const startTime = timeRange[0];
+      console.log("startTime: ", startTime);
+
+      const endTime = timeRange[1];
       const response = await axios.post(
         POST_URL,
         JSON.stringify({
-          fName,
+          userName,
           email,
           trainingType,
           description,
           price,
+          startTime,
+          endTime,
         }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response.data));
+      alert("submited");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -56,49 +60,61 @@ export default function PostTraining({ fName, setFName }) {
   };
   return (
     <div>
-      <p>{userName}</p>
-      <form className="post-training" onSubmit={handleSubmit}>
-        <label htmlFor="Name">FullName:</label>
-        <input
-          type="text"
-          onChange={(e) => setFName(e.target.value)}
-          required
-        />
+      <NavBar />
+      <form
+        className="post-training"
+        onSubmit={handleSubmit}
+        style={{ display: "grid", gap: "20" }}
+      >
         <label htmlFor="Email">Email:</label>
         <input
           type="text"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <label htmlFor="trainingtype">Training Type:</label>
         <input
           type="text"
+          value={trainingType}
           required
           onChange={(e) => setTrainingType(e.target.value)}
         />
-        <label htmlFor="Description ">Description:</label>
-        <input
+
+        <label htmlFor="Description ">Description: </label>
+        <textarea
           className="description"
+          value={description}
           type="text"
           required
           onChange={(e) => setDecription(e.target.value)}
         />
-        <label htmlFor="price">Price: $</label>
-        <input
-          type="Number"
-          required
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <FontAwesomeIcon icon={faCalendarDays} />
-        Select Start Day and Time:
-        <DatePicker dateFormat="LLL" onChange={setStart} isRequired="true" />
-        <TimeRangePicker
-          placeholder="Enter Preffered Time"
-          dateFormat="hh:mm"
+
+        <label htmlFor="price">
+          Price: $
+          <input
+            value={price}
+            type="Number"
+            required
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+
+        <label>
+          <FontAwesomeIcon icon={faCalendarDays} /> Select Day{" "}
+        </label>
+        <DatePicker selected={day} onChange={setDay} dateFormat="dd MMM yyyy" />
+        <TimeRangeInput
+          format="12"
+          value={timeRange}
+          onChange={setTimeRange}
+          label="Set Time Range"
+          isClearable
         />
         <button>Post</button>
       </form>
-      {console.log("training name", fName)}
+      <Link to="/Test/">Test</Link>
     </div>
   );
 }
