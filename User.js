@@ -1,31 +1,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema({
-    traineeName:{
+const userSchema = new Schema({
+    fullname:{
         type: String,
         required: true
     },
-    trainerName:{
+    email:{
         type: String,
         required: true
     },
-    trainingType:{
+    username: {
         type: String,
         required: true
     },
-    rating:{
-        type: Number,
-        required: true
+    roles:{
+        User:{
+            type: Number,
+            default: 2001
+        },
+        Admin: Number
     },
-    review:{
+    password: {
         type: String,
         required: true
     },
-    date:{
+    classification: {
         type: String,
         required: true
-    }
+    },
+    refreshToken: String
 })
-
-module.exports = mongoose.model('Review', reviewSchema);
+module.exports = mongoose.model('User', userSchema)
