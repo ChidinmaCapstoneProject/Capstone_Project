@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function UserName({ userInfo, setUserInfo }) {
+export default function FullName({ userInfo, setUserInfo }) {
   return (
     <>
       <label htmlFor="fullname">Full Name:</label>

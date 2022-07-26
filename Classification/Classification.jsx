@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function UserName({ setUserInfo }) {
+export default function Classification({ setUserInfo }) {
   return (
     <>
       <p>What type of account would you like to create</p>

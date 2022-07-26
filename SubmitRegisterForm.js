@@ -2,8 +2,6 @@ import axios from "../../api/axios";
 const REGISTER_URL = "/register";
 
 export async function handleSubmit ( userInfo, userPwd, setSuccess, setErrMsg,errRef) {
-    console.log('clicked');
-    console.log({userInfo});
     const fName = userInfo.fName;
     const email = userInfo.email;
     const user = userInfo.username;

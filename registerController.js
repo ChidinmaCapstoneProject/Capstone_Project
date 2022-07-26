@@ -9,17 +9,8 @@ const handleNewUser = async (req, res) => {
             res.status(400).json({ 'message': 'Full Name, Email, Username , classification and Password are required.' })
         );
     }
-    const allClassification= await User.find({classification: classification});
-    console.log('allClassification', allClassification)
-
-    //check for duplicate usernames in the db
-    const duplicate1= allClassification.find((n) =>{
-        return n.username === user;
-    } )
-    const duplicate2= allClassification.find((n) =>{
-        return n.email === email;
-    } )
-    if (duplicate1?.username === user || duplicate2?.email === email ) {
+    const duplicate = User.find({classification: classification, username: user, email: email})
+    if (duplicate) {
         return res.sendStatus(409); //confilct status
     }
     try {

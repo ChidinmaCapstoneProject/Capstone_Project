@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function UserName({ userPwd, setUserPwd }) {
+export default function ConfirmPwd({ userPwd, setUserPwd }) {
   return (
     <>
       <label htmlFor="confirm_pwd">

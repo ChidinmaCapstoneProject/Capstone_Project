@@ -8,7 +8,7 @@ import UserEmail from "./UserEmail/UserEmail";
 import Username from "./Username/Username";
 import Password from "./Password/Password";
 import ConfirmPwd from "./ConfirmPwd/ConfirmPwd";
-import Classification from "./Classification/Classification";
+import Classification from "../Classification/Classification";
 
 export default function UserRegistration() {
   const userRef = useRef();
