@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function UserName({ userInfo, setUserInfo }) {
+export default function UserEmail({ userInfo, setUserInfo }) {
   return (
     <>
       <label htmlFor="email">
