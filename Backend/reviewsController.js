@@ -16,7 +16,7 @@ const handleNewReview = async (req, res) => {
             'review': review,
             'date': date
         });
-        console.log(result);
+
 
         res.status(201).json({ 'success': `New Review for' ${trainerName}'s ${trainingType} class created` });
     } catch (err) {
