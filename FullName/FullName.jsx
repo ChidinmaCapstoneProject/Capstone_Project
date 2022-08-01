@@ -11,7 +11,7 @@ export default function FullName({ userInfo, setUserInfo }) {
         onChange={(e) =>
           setUserInfo((previousValue) => ({
             ...previousValue,
-            fName: e.target.value.toLowerCase(),
+            fName: e.target.value,
           }))
         }
         value={userInfo.fName}
