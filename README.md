@@ -44,31 +44,30 @@ A button will be displayed for the Trainer to view more information. Bloc tabs f
 <strong>Details</strong>: Will display the Description and price set for that training and the name and emails of people who have booked the training.<br/>
 <strong>Reviews</strong>: Will display a list of reviews and ratings filtered by the Trainer’s name so the trainer can get feedback.<br/>
 <br/>
-Deal with finding training, bookings and find gym features for trainees.<br/>
+**Deal with finding training, bookings and find gym features for trainees**.<br/>
 <strong>Find Trainings</strong>: A calendar will be displayed starting from the present month. If the user clicks on any date, a list of all names of trainers with training that day will be displayed. <br/>
 There will be a button to see all training sessions by that trainer. Disable the button of past days and add a green text color to the dates that have training. Add a description below to tell them that dates with color green have content.<br/>
-All training: This page will show all training based on the Trainer name that is clicked. There will be a button for more information, it will have details and review tabs.<br/>
-Details: Will display the type,description and price set for that training , the Trainer’s information and a book button. On clicking the button, the trainee and trainer who was booked information will be saved in the database. <br/>
-Reviews: Trainees will be able to view past reviews based on the Trainer’s name and the user can decide to write a review and add rating. When submitted , the review, trainer name, trainee name, rating , and time of comment will be saved in the database.<br/>
-My Bookings: A calendar will be displayed starting from the present month. If the user clicks on any date, a list of bookings for that day (retrieved from the database).There will be a button to see all training sessions by that trainer.<br/>
-Find Gym: With the use of Rapid API and the google nearby places API, make an api call with the user’s longitude and latitude gotting from the navigator feature in react.<br/>
-Find Gym: This component does the api call, stores it in a state and passes to the List component for displaying.The map component is also called in this component and the both components are placed side by side in 2 columns format. <br/>
-List: A menu bar is shown for the user to choose how many miles distance they want to check for the gyms. Some description is shown and a Place Details component is called and receives the places array which has the list of all gyms close by based on the distance selected. A grid format is set for the place details component. Default distance is 15 miles.<br/>
-Place Details: Receives each place in the array of all nearby places and displays the gyms image, name, status, address, and overall rating. This is displayed on a card and since called inside the List component will be displayed in a grid.<br/>
-Map: With the use of the imported google map react dependency, the map will be displayed based on the user’s longitude and latitude. The default center of the map is set to the user’s location, once the user clicks on anywhere in the map the longitude and latitude changes which causes the api call to rerender and find different nearby locations. <br/>
-There will be a button to see all training sessions by that trainer. Disable the button of past days and add a green text color to the dates that have training. Add a description below to tell them that dates with color green have content.<br/>
-All training: This page will show all training based on the Trainer name that is clicked. There will be a button for more information, it will have details and review tabs.<br/>
-Details: Will display the type,description and price set for that training , the Trainer’s information and a book button. On clicking the button, the trainee and trainer who was booked information will be saved in the database. <br/>
-Reviews: Trainees will be able to view past reviews based on the Trainer’s name and the user can decide to write a review and add rating. When submitted , the review, trainer name, trainee name, rating , and time of comment will be saved in the database.
-My Bookings: A calendar will be displayed starting from the present month. If the user clicks on any date, a list of bookings for that day (retrieved from the database).There will be a button to see all training sessions by that trainer.<br/>
-Find Gym: With the use of Rapid API and the google nearby places API, make an api call with the user’s longitude and latitude gotting from the navigator feature in react.
-Find Gym: This component does the api call, stores it in a state and passes to the List component for displaying.The map component is also called in this component and the both components are placed side by side in 2 columns format. <br/>
-List: A menu bar is shown for the user to choose how many miles distance they want to check for the gyms. Some description is shown and a Place Details component is called and receives the places array which has the list of all gyms close by based on the distance selected. A grid format is set for the place details component. Default distance is 15 miles.<br/>
-Place Details: Receives each place in the array of all nearby places and displays the gyms image, name, status, address, and overall rating. This is displayed on a card and since called inside the List component will be displayed in a grid.<br/>
-Map: With the use of the imported google map react dependency, the map will be displayed based on the user’s longitude and latitude. The default center of the map is set to the user’s location, once the user clicks on anywhere in the map the longitude and latitude changes which causes the api call to rerender and find different nearby locations. 
+**All training**: This page will show all training based on the Trainer name that is clicked. There will be a button for more information, it will have details and review tabs.<br/>
+**Details**: Will display the type,description and price set for that training , the Trainer’s information and a book button. On clicking the button, the trainee and trainer who was booked information will be saved in the database. <br/>
+**Reviews**: Trainees will be able to view past reviews based on the Trainer’s name and the user can decide to write a review and add rating. When submitted , the review, trainer name, trainee name, rating , and time of comment will be saved in the database.<br/>
+**My Bookings**: A calendar will be displayed starting from the present month. If the user clicks on any date, a list of bookings for that day (retrieved from the database).There will be a button to see all training sessions by that trainer.<br/>
+**Find Gym**: With the use of Rapid API and the google nearby places API, make an api call with the user’s longitude and latitude gotting from the navigator feature in react.<br/>
+**Find Gym**: This component does the api call, stores it in a state and passes to the List component for displaying.The map component is also called in this component and the both components are placed side by side in 2 columns format. <br/>
+**List**: A menu bar is shown for the user to choose how many miles distance they want to check for the gyms. Some description is shown and a Place Details component is called and receives the places array which has the list of all gyms close by based on the distance selected. A grid format is set for the place details component. Default distance is 15 miles.<br/>
+**Place Details**: Receives each place in the array of all nearby places and displays the gyms image, name, status, address, and overall rating. This is displayed on a card and since called inside the List component will be displayed in a grid.<br/>
+**Map**: With the use of the imported google map react dependency, the map will be displayed based on the user’s longitude and latitude. The default center of the map is set to the user’s location, once the user clicks on anywhere in the map the longitude and latitude changes which causes the api call to rerender and find different nearby locations. <br/>
+There will be a button to see all training sessions by that trainer. <br/><br/>
+
+
+**Week 7-**
+**Find Gym**: Improved user experience  by adding a section for users to enter in Zip Code in case the user does not want their location to be disclosed. Using the place Details google api added more information about each gym displayed like the website and their google page which has all the reviews and other information about the gym. Added markers on the map for the current location from the geolocation or zip code entered and markers for each gym shown on the list. <br/>
+**Find Training**: Disabled the previous and current day on the map so the users cannot book a training that has already passed. Displayed the list of Trainers available for each day beside the calendar instead of the list of training to minimize the list. Each Trainer that is clicked is then taken to an Info page which shows the reviews and all training for each trainer. The all training list shows all the training available for each trainer that day. The user can click on the details button to view a popup which shows more details and allows the user to book if they want. 
+**Bookings**: Set a conflict status on the backend for the bookings so the users cannot book the same training more than once.
+For the findTraining, and all bookings page, I added a lime light to the bottom of each day that had content so the users don’t have to click every day before finding which day has a training and which doesn’t. 
 <br/><br/>
 
-Week 7-
-Find Gym: Improved user experience  by adding a section for users to enter in Zip Code in case the user does not want their location to be disclosed. Using the place Details google api added more information about each gym displayed like the website and their google page which has all the reviews and other information about the gym. Added markers on the map for the current location from the geolocation or zip code entered and markers for each gym shown on the list. <br/>
-Find Training: Disabled the previous and current day on the map so the users cannot book a training that has already passed. Displayed the list of Trainers available for each 
+**Week 8- ** <br/><br/>
+
+Changed filtering parameters to id instead of name due to the possibility of more than one user with the same name. 
+ 
 
