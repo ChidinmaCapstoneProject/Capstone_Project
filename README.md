@@ -28,7 +28,7 @@ GET- Getting all the users
      Retriving all the reviews to the trainees
      Retriving all reviews to each trainer based on their names
      Retriving all booking based on trainer or trainee name to display on their bookings page.
-     
+ <br/><br/>
      
 <strong>Week 4-</strong><br/>
 Implement the signup and login pages and connect to the database, ensure the verification of emails and usernames when logging in. There should be a checkbox to ensure the user can choose their classification: Trainer or Trainee. This implementation allows the user login based on their use of the website.<br/>
