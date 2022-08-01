@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllReviews } from "../../../../Utils/DataManagement";
 import useLocalStorage from "../../../../Hooks/useLocalStorage";
 import Rating from "@material-ui/lab/Rating";
+import { format } from "timeago.js";
 import "./TrainerReview.css";
 
 export default function ViewReviews({ trainerName }) {
@@ -30,11 +31,12 @@ export default function ViewReviews({ trainerName }) {
           {reviews.map((review, id) => {
             return (
               <div key={id}>
-                <h2>{review.traineeName}</h2>
-                <h3>{review.trainingType}</h3>
-                {review.date}
+                <strong>{review.traineeName}</strong> <br />
                 <Rating size="medium" value={Number(review?.rating)} readOnly />
-                <p>{review.review}</p>
+                {format(review.date)}
+                <br />
+                <h3>Training Type: {review.trainingType}</h3>
+                <p>Review: {review.review}</p>
                 <hr />
               </div>
             );

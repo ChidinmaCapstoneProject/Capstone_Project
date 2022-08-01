@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express')
 const app= express()
-// const http = require('http')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions');
 const mongoose = require('mongoose');
@@ -19,7 +18,6 @@ const review = require('./routes/review')
 const conversations = require('./routes/conversations')
 const messages = require('./routes/messages')
 const getPlaces = require('./routes/getPlaces')
-// const {Server} = require('socket.io')
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 const PORT = process.env.PORT || 3500

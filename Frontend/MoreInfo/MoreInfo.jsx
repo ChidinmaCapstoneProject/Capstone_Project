@@ -6,6 +6,7 @@ import { getAllBookings } from "../../../Utils/DataManagement";
 import useLocalStorage from "../../../Hooks/useLocalStorage";
 import NavBar from "../../NavBar/NavBar";
 import { parseISO, isSameDay, format } from "date-fns";
+import { NO_BOOKINGS, PEOPLE_WHO_BOOKED } from "../../../Utils/StringLiterals";
 import "./MoreInfo.css";
 
 export default function MoreInfo({ booking }) {
@@ -42,7 +43,7 @@ export default function MoreInfo({ booking }) {
           Time: {format(parseISO(training.startTime), "h:mm a")} -{" "}
           {format(parseISO(training.endTime), "h:mm a")}
         </p>
-        <p>People who booked</p>
+        <p>{PEOPLE_WHO_BOOKED}</p>
         <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
           {whoBooked.length > 0 ? (
             whoBooked.map((each, id) => (
@@ -58,7 +59,7 @@ export default function MoreInfo({ booking }) {
               </li>
             ))
           ) : (
-            <p>No bookings yet.</p>
+            <p>{NO_BOOKINGS}</p>
           )}
         </ol>
       </div>
