@@ -30,7 +30,7 @@ GET- Getting all the users
      Retriving all booking based on trainer or trainee name to display on their bookings page.
      
      
-<strong>Week 4-</strong><br/><br/>
+<strong>Week 4-</strong><br/>
 Implement the signup and login pages and connect to the database, ensure the verification of emails and usernames when logging in. There should be a checkbox to ensure the user can choose their classification: Trainer or Trainee. This implementation allows the user login based on their use of the website.<br/>
 <strong>SignUp</strong>: The user enters their information in the registration form, I added tests that ensure the users cannot use the same username and email for each classification: Trainer or Trainee i.e a user can use the same email and username for trainer account and trainee account but the user can’t use the same email for a Trainer or Trainee account more than once. The data received is stored in the database and the user is directed to the login page.<br/>
 <strong>Login</strong>: The user is required to put their username,  password, and classification. Once the user submits, if the authentication process is successful, the user is directed to the home page, if not an error message like Unauthorized is displayed to tell the user that to sign up instead. The user classification and name is saved in this component. <br/>
@@ -43,7 +43,7 @@ Deal with the posting of training, bookings and viewing bookings of trainers. <b
 A button will be displayed for the Trainer to view more information. Bloc tabs for Training details and reviews will be displayed.<br/>
 <strong>Details</strong>: Will display the Description and price set for that training and the name and emails of people who have booked the training.<br/>
 <strong>Reviews</strong>: Will display a list of reviews and ratings filtered by the Trainer’s name so the trainer can get feedback.<br/>
-<br/><br/>
+<br/>
 Deal with finding training, bookings and find gym features for trainees.<br/>
 <strong>Find Trainings</strong>: A calendar will be displayed starting from the present month. If the user clicks on any date, a list of all names of trainers with training that day will be displayed. <br/>
 
