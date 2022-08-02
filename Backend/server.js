@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express')
 const app= express()
-const http = require('http')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions');
 const mongoose = require('mongoose');
@@ -16,7 +15,8 @@ const credentials = require('./middleware/credentials');
 const connectDB = require('../capstone-express-api/config/dbConn')
 const logout =require('../capstone-express-api/routes/logout')
 const review = require('./routes/review')
-const {Server} = require('socket.io')
+const conversations = require('./routes/conversations')
+const messages = require('./routes/messages')
 const PORT = process.env.PORT || 3500
 
 //connect to MongoDB
@@ -34,15 +34,6 @@ app.use(express.json());
 //middleware for cookies
 app.use(cookieParser());
 
-const server = http.createServer(app)
-const io = new Server(server)
-io.on('connection', (socket) =>{
-  console.log(`User Connected: ${socket.id}`)
-
-  socket.on('disconnect'), () =>{
-  console.log('User Disconnected', socket.id)
-  }
-})
 
 //routes
 app.use ('/register', register);
@@ -52,6 +43,9 @@ app.use ('/logout', logout);
 app.use('/training', training)
 app.use('/booking', booking)
 app.use('/review', review)
+app.use('/conversations', conversations)
+app.use('/messages', messages)
+app.use('/placeDetails', placeDetails)
 
 
 app.use (verifyJWT);
