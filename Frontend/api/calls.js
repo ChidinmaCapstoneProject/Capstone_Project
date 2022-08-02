@@ -2,7 +2,7 @@ import axios from "axios";
 const URL= 'https://google-maps28.p.rapidapi.com/maps/api/place/nearbysearch/json';
 
 export const getPlacesData = async (lat, lng, distance) =>{
-    console.log('distance: ', distance);
+    
 
     try{
         if(lat &&lng){
