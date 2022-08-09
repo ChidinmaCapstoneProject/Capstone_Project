@@ -35,12 +35,12 @@ export default function TrainingList({ trainings }) {
     socket.on("updateTraining", (update) => {
       trainings.map((change) => {
         if (change._id === update.ID) {
-          var keys = Object.keys(update);
-          var keys2 = Object.keys(change);
-          for (var i = 0; i < keys2.length; i++) {
-            for (var j = 1; j < keys.length; j++) {
-              if (keys2[i] === keys[j]) {
-                change.keys2[i] = update.keys2[i];
+          var updatekeys = Object.keys(update);
+          var changekeys = Object.keys(change);
+          for (var i = 0; i < changekeys.length; i++) {
+            for (var j = 1; j < updatekeys.length; j++) {
+              if (changekeys[i] === updatekeys[j]) {
+                change.changekeys[i] = update.changekeys[i];
               }
             }
           }
