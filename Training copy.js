@@ -6,6 +6,10 @@ const trainingSchema = new Schema({
         type: String,
         required: true
     },
+    Id: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -20,6 +24,14 @@ const trainingSchema = new Schema({
     },
     price: {
         type: Number,
+        required: true
+    },
+    slots: {
+        type: Number,
+        required: true
+    },
+    day:{
+        type: Date,
         required: true
     },
     startTime:{

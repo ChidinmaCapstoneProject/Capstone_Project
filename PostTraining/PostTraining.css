@@ -15,6 +15,9 @@ div form input {
 .description {
   height: 100px;
 }
+/* .setTime {
+  box-sizing: content-box !important;
+} */
 /* .start {
   position: absolute;
 } */
