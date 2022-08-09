@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import useLocalStorage from "../../../../Hooks/useLocalStorage";
 import { getAllTrainings } from "../../../../Utils/DataManagement";
 import { SOCKET_URL } from "../../../../Utils/URLConstants";
@@ -7,6 +7,7 @@ import { parseISO, isSameDay } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import { NO_TRAINERS } from "../../../../Utils/StringLiterals";
+import SocketContext from "../../../context/SocketTraining";
 const socket = io(SOCKET_URL);
 
 export default function ScheduledTraining({ selectedDay }) {
@@ -14,6 +15,9 @@ export default function ScheduledTraining({ selectedDay }) {
     "initialTrainings",
     []
   );
+  const { setSocketTrainings, socketTrainings } = useContext(SocketContext);
+  console.log("socket: ", socketTrainings);
+
   const [trainings, setTrainings] = useLocalStorage("trainings", []);
   const [selectedDayTrainings, setSelectedDayTrainings] = useState([]);
   const navigate = useNavigate();
@@ -26,9 +30,9 @@ export default function ScheduledTraining({ selectedDay }) {
       getTrainings();
     });
     socket.on("deletedTraining", (id) => {
-      const updatedTraining = initialTrainings.filter((training) => {
-        return training._id !== id;
-      });
+      getTrainings();
+    });
+    socket.on("updateTraining", () => {
       getTrainings();
     });
     getTrainings();
@@ -39,19 +43,20 @@ export default function ScheduledTraining({ selectedDay }) {
       const filtered = initialTrainings.filter((each) => {
         return isSameDay(parseISO(each?.day), selectedDay);
       });
+      setSocketTrainings(filtered);
       setTrainings(filtered);
       setSelectedDayTrainings(
         filtered.filter(
-          (ele, ind) => ind == filtered.findIndex((elem) => elem.Id === ele.Id)
+          (ele, ind) => ind === filtered.findIndex((elem) => elem.Id === ele.Id)
         )
       );
     };
     allTrainings();
   }, [selectedDay, initialTrainings]);
 
-  const handleClick = (trainerName) => {
+  const handleClick = (trainerName, Id) => {
     navigate("/TrainerInfo", {
-      state: { trainerName: trainerName, trainings: trainings },
+      state: { trainerName: trainerName, trainerId: Id },
     });
   };
   return (
@@ -62,7 +67,7 @@ export default function ScheduledTraining({ selectedDay }) {
             <li
               key={id}
               className="flex items-center px-4 py-2 space-x-4 group rounded-xl focus-within:bg-gray-100 hover:bg-gray-100"
-              onClick={() => handleClick(each.fullname)}
+              onClick={() => handleClick(each.fullname, each.Id)}
             >
               <div className="flex-auto">
                 <p className="text-gray-900"> {each.fullname}</p>
