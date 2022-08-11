@@ -31,25 +31,13 @@ export default function TrainingList({ trainings }) {
         })
       );
     }
-    getMatchedTraining();
+  getMatchedTraining();
    socket.on("updateTraining", (update) => {
       trainings.map((each) => {
-        if (change._id === update.ID) {
-          var updateKeys = Object.keys(update);
-          var eachKeys = Object.keys(each);
-          for (var i = 0; i < eachKeys.length; i++) {
-            for (var j = 1; j < updateKeys.length; j++) {
-              if (eachKeys[i] === updateKeys[j]) {
-                each.size = update?.size;
-                each.email = update?.email;
-                each.trainingType = update?.trainingType;
-                each.description = update?.description;
-                each.price = update?.price;
-                each.slots = update?.slots;
-                each.day = update?.day;
-                each.startTime = update?.startTime;
-                each.endTime = update?.endTime;
-              }
+        if (each._id === update.ID) {
+          for (var key in each) {
+            if (Object.keys(update).includes(key)) {
+              each[key] = update[key];
             }
           }
         }
