@@ -4,6 +4,7 @@ import { getAllTrainings } from "../../../Utils/DataManagement";
 import { useEffect, useContext } from "react";
 import { parseISO, isSameDay, format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { NO_APPOINTMENTS } from "../../../Utils/StringLiterals";
 
 export default function TrainerBookedSessions({ selectedDay }) {
   const [trainings, setTrainings] = useState([]);
@@ -51,7 +52,7 @@ export default function TrainerBookedSessions({ selectedDay }) {
             </li>
           ))
         ) : (
-          <p>No appointments for today.</p>
+          <p>{NO_APPOINTMENTS}</p>
         )}
       </ol>
     </div>

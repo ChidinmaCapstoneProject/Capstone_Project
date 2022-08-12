@@ -1,11 +1,14 @@
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router";
 import AuthContext from "../../context/AuthProvider";
 import { getAllBookings } from "../../../Utils/DataManagement";
 import useLocalStorage from "../../../Hooks/useLocalStorage";
 import NavBar from "../../NavBar/NavBar";
 import { parseISO, isSameDay, format } from "date-fns";
+import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UpdateTrainingForm from "./UpdateTrainingForm/UpdateTrainingForm";
+import DeleteTraining from "./DeleteTraining/DeleteTraining";
 import { NO_BOOKINGS, PEOPLE_WHO_BOOKED } from "../../../Utils/StringLiterals";
 import "./MoreInfo.css";
 
@@ -14,6 +17,9 @@ export default function MoreInfo({ booking }) {
   const [selectedDay, setSelectedDay] = useState(location?.state?.selectedDay);
   const [training, setTraining] = useState(location?.state?.training);
   const { userName } = useContext(AuthContext);
+  const [isActive, setIsActive] = useState(false);
+  const [isDeleteActive, setIsDeleteActive] = useState(false);
+
   const [whoBooked, setWhoBooked] = useLocalStorage("whoBooked", []);
 
   useEffect(() => {
@@ -37,12 +43,46 @@ export default function MoreInfo({ booking }) {
     <>
       <NavBar />
       <div>
-        <h1>{training.trainingType}</h1>
-        <p>Description: {training.description}</p>
-        <p>
-          Time: {format(parseISO(training.startTime), "h:mm a")} -{" "}
-          {format(parseISO(training.endTime), "h:mm a")}
-        </p>
+        <h1>
+          <strong>{training.trainingType}</strong>
+        </h1>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <p>Description: {training.description}</p>
+            <p>
+              Time: {format(parseISO(training.startTime), "h:mm a")} -{" "}
+              {format(parseISO(training.endTime), "h:mm a")}
+            </p>
+          </div>
+          <div>
+            <FontAwesomeIcon
+              icon={faPen}
+              size="xl"
+              onClick={() => setIsActive(true)}
+            />
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              size="xl"
+              onClick={() => setIsDeleteActive(true)}
+            />
+          </div>
+        </div>
+        {isActive === true ? (
+          <UpdateTrainingForm training={training} setIsActive={setIsActive} />
+        ) : null}
+        {isDeleteActive === true ? (
+          <DeleteTraining
+            training={training}
+            setIsDeleteActive={setIsDeleteActive}
+          />
+        ) : null}
+
         <p>{PEOPLE_WHO_BOOKED}</p>
         <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
           {whoBooked.length > 0 ? (

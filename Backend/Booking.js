@@ -18,6 +18,10 @@ const bookingSchema = new Schema({
         type: String,
         required: true
     },
+    trainingId:{
+        type: String,
+        required: true
+    },
     day:{
         type: Date,
         required: true
