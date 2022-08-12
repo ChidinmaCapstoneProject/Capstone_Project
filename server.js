@@ -56,6 +56,7 @@ app.use(verifyJWT);
 
 mongoose.connection.once("open", () => {
   app.listen(PORT, () => {
+    console.log(`🚀 Server listening at http://localhost:${PORT}`);
   });
   const trainingCollection = mongoose.connection.collection("trainings");
   const changeStream = trainingCollection.watch();
@@ -101,3 +102,4 @@ mongoose.connection.once("open", () => {
 });
 
 module.exports = app;
+
