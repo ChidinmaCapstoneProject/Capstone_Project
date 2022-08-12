@@ -18,7 +18,6 @@ const review = require("./routes/review");
 const conversations = require("./routes/conversations");
 const messages = require("./routes/messages");
 const placeDetails = require("./routes/placeDetails");
-const server = require("http").createServer(app);
 const io = require("socket.io")(8900, {
   cors: {
     origin: "http://localhost:3000",
@@ -62,8 +61,8 @@ mongoose.connection.once("open", () => {
   const trainingCollection = mongoose.connection.collection("trainings");
   const changeStream = trainingCollection.watch();
   changeStream.on("change", (change) => {
-    console.log("change", change);
     const training = change.fullDocument;
+    const updateTraining=change.updateDescription.updatedFields;
     switch (change.operationType) {
       case "insert":
         const Training = {
@@ -81,7 +80,20 @@ mongoose.connection.once("open", () => {
         };
         io.emit("newTraining", Training);
         break;
-
+        case 'update':
+          const update = {
+            ID:change.documentKey._id,
+            email: updateTraining?.email,
+            trainingType: updateTraining?.trainingType,
+            description: updateTraining?.description,
+            price: updateTraining?.price,
+            slots: updateTraining?.slots,
+            day: updateTraining?.day,
+            startTime: updateTraining?.startTime,
+            endTime: updateTraining?.endTime,
+          };
+        io.emit('updateTraining', update);
+        break;
       case "delete":
         io.emit("deletedTraining", change.documentKey._id);
         break;
