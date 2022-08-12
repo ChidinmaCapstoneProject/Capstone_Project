@@ -64,7 +64,6 @@ app.use("/placeDetails", placeDetails);
 app.use(verifyJWT);
 
 mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
   app.listen(PORT, () => {
     console.log(`🚀 Server listening at http://localhost:${PORT}`);
   });
