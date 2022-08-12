@@ -41,14 +41,6 @@ app.use(express.json());
 //middleware for cookies
 app.use(cookieParser());
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
-
 //routes
 app.use("/register", register);
 app.use("/auth", auth);
