@@ -15,10 +15,7 @@ export default function ScheduledTraining({ selectedDay }) {
     "initialTrainings",
     []
   );
-  const { setSocketTrainings, socketTrainings } = useContext(SocketContext);
-  console.log("socket: ", socketTrainings);
-
-  const [trainings, setTrainings] = useLocalStorage("trainings", []);
+  const { setSocketTrainings } = useContext(SocketContext);
   const [selectedDayTrainings, setSelectedDayTrainings] = useState([]);
   const navigate = useNavigate();
 
@@ -44,7 +41,6 @@ export default function ScheduledTraining({ selectedDay }) {
         return isSameDay(parseISO(each?.day), selectedDay);
       });
       setSocketTrainings(filtered);
-      setTrainings(filtered);
       setSelectedDayTrainings(
         filtered.filter(
           (ele, ind) => ind === filtered.findIndex((elem) => elem.Id === ele.Id)

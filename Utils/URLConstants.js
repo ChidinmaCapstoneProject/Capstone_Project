@@ -5,3 +5,4 @@ export const BOOKINGS_URL = "/booking";
 export const REGISTER_URL = "/register";
 export const LOGOUT_URL = "/logout";
 export const SOCKET_URL = "http://localhost:8900";
+export const PLACEDETAILS_URL = "/placeDetails?place_id=";

@@ -1,6 +1,5 @@
 import axios from "../api/axios";
-import Pusher from "pusher-js";
-import { io } from "socket.io-client";
+
 import {
   LOGOUT_URL,
   REVIEWS_URL,
