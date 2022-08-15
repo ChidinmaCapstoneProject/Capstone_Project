@@ -40,14 +40,6 @@ app.use(express.json());
 //middleware for cookies
 app.use(cookieParser());
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
-
 //routes
 app.use("/register", register);
 app.use("/auth", auth);
@@ -63,12 +55,12 @@ app.use("/placeDetails", placeDetails);
 app.use(verifyJWT);
 
 mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
   app.listen(PORT, () => {
-    console.log(`🚀 Server listening at http://localhost:${PORT}`);
   });
   const trainingCollection = mongoose.connection.collection("trainings");
+  const reviewCollection = mongoose.connection.collection("reviews");
   const changeStream = trainingCollection.watch();
+  const reviewStream = reviewCollection.watch();
   changeStream.on("change", (change) => {
     const training = change.fullDocument;
     const updateTraining=change.updateDescription.updatedFields;
@@ -108,6 +100,24 @@ mongoose.connection.once("open", () => {
         break;
     }
   });
+  reviewStream.on("change", (change) => {
+    const review = change.fullDocument;
+
+    switch (change.operationType) {
+      case "insert":
+        const Review={
+            _id:change.fullDocument._id,
+            traineeName: review?.traineeName,
+            trainerName: review?.trainerName,
+            trainingType: review?.trainingType,
+            rating: review?.rating,
+            review: review?.review,
+            date: review?.date,
+        }
+        io.emit("newReview", Review);
+        break;
+    }
+    });
 });
 
 module.exports = app;
