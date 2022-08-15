@@ -12,10 +12,6 @@ import { io } from "socket.io-client";
 const socket = io(SOCKET_URL);
 
 export default function TrainingList({ trainings }) {
-  const [selectedTrainings, setSelectedTrainings] = useLocalStorage(
-    "selectedTrainings",
-    []
-  );
   const [matchedTrainings, setMatchedTrainings] = useLocalStorage(
     "matchedTrainings",
     []
@@ -31,8 +27,8 @@ export default function TrainingList({ trainings }) {
         })
       );
     }
-  getMatchedTraining();
-   socket.on("updateTraining", (update) => {
+    getMatchedTraining();
+    socket.on("updateTraining", (update) => {
       trainings.map((each) => {
         if (each._id === update.ID) {
           for (var key in each) {
