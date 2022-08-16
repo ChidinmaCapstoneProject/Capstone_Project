@@ -32,7 +32,7 @@ User Roles-<br/>
 
 <p>SidebarC: The Trainer's sidebar displays Find Training, ViewBookings,FindGym and Connect components for chats
 
-<p>End Points</p> <br>
+<p><strong>End Points</strong></p> <br>
 POST-	Create a new user account	<br/>
         Send Login Information to mongoDb
         Store all the trainings posted by each trainer
@@ -42,6 +42,8 @@ GET- Getting all the users
      Retriving all the reviews to the trainees
      Retriving all reviews to each trainer based on their names
      Retriving all booking based on trainer or trainee name to display on their bookings page.
+PUT- Update trainings and bookings when trainer updates trainings
+DELETE- Delete trainings an bookings when trainer deletes trainings
  <br/><br/>
      
 <strong>Week 4-</strong><br/>
