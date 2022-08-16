@@ -1,5 +1,4 @@
 const Booking = require ('../model/Booking');
-const Training = require('../model/Training')
 const handleNewBooking = async (req, res) => {
     const { traineeName, traineeEmail, trainerName, trainingType,day, startTime, endTime,trainingId } = req.body;
     if (!traineeName || !traineeEmail || !trainerName || !trainingType || !day || !startTime || !endTime || !trainingId)  {
@@ -7,11 +6,10 @@ const handleNewBooking = async (req, res) => {
             res.status(400).json({ 'message': 'Fill out all information' })
         );
     }
-    const notFound= await Training.findOne({_id:trainingId});
-    if (notFound.length===0) {
-        return res.sendStatus(404); //confilct status
-    }
+
     const duplicate= await Booking.find({trainingId:trainingId});
+
+
     if (duplicate.length>0) {
         return res.sendStatus(409); //confilct status
     }
@@ -40,6 +38,24 @@ const getAllBookings = async(req, res) =>{
     if(!bookings) return res.status(204).json({'message': 'No Bookings Found'});
     res.json(bookings)
 }
+const updateBooking = async (req, res) => {
+  if (!req.params.trainingId) {
+    return res.status(400).json({ message: "ID parameter required" });
+  }
+  const booking = await Booking.findOne({ trainingId: req.params.trainingId }).exec();
+  if (!booking) {
+    return res
+      .status(204)
+      .json({ message: `No Booking ID matches ${req.params.trainingId} ` });
+  }
+
+  if (req.body?.trainingType) booking.trainingType = req.body.trainingType;
+  if (req.body?.startTime) booking.startTime = req.body.startTime;
+  if (req.body?.endTime) booking.email = req.body.email;
+  if (req.body?.day) booking.day = req.body.day;
+  const result = await booking.save();
+  res.json(result);
+};
 const deleteBooking = async (req, res) => {
     try {
       const booking = await Booking.find({ trainingId: req.params.bookingId }).exec();
@@ -59,5 +75,6 @@ module.exports =
 {
     handleNewBooking,
     getAllBookings,
+    updateBooking,
     deleteBooking
 }
