@@ -5,10 +5,6 @@
 ### Starting the app
 
 ```
-ng serve [--open --port 8080/8443 --liveReload true/false --proxy-config proxy.conf.json --target Build --environment --ssl true/false --ssl-key ssl/server.key --ssl-cert ssl/server.cert --aot true/false]
-
-or
-
 npm start
 ```
 User Stories-
