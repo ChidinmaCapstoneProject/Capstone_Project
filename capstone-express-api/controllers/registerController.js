@@ -9,7 +9,7 @@ const handleNewUser = async (req, res) => {
             res.status(400).json({ 'message': 'Full Name, Email, Username , classification and Password are required.' })
         );
     }
-    const duplicate = User.find({classification: classification, username: user, email: email})
+    const duplicate = await User.find({classification: classification, username: user, email: email})
     if (duplicate) {
         return res.sendStatus(409); //confilct status
     }
