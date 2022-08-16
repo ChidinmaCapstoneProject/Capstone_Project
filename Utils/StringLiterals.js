@@ -1,0 +1,6 @@
+export const NO_TRAINERS='No Trainers Available Today.'
+export const AVAILABLE_TRAINERS_HEADER='Trainers Available for '
+export const APPOINTMENTS_HEADER='My Appointments for '
+export const NO_APPOINTMENTS='No Appointment for Today.'
+export const PEOPLE_WHO_BOOKED='People who booked'
+export const NO_BOOKINGS='No Bookings yet.'
