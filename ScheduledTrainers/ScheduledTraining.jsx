@@ -16,6 +16,8 @@ export default function ScheduledTraining({ selectedDay }) {
     []
   );
   const { setSocketTrainings } = useContext(SocketContext);
+
+  const [trainings, setTrainings] = useLocalStorage("trainings", []);
   const [selectedDayTrainings, setSelectedDayTrainings] = useState([]);
   const navigate = useNavigate();
 
@@ -41,6 +43,7 @@ export default function ScheduledTraining({ selectedDay }) {
         return isSameDay(parseISO(each?.day), selectedDay);
       });
       setSocketTrainings(filtered);
+      setTrainings(filtered);
       setSelectedDayTrainings(
         filtered.filter(
           (ele, ind) => ind === filtered.findIndex((elem) => elem.Id === ele.Id)
@@ -50,9 +53,9 @@ export default function ScheduledTraining({ selectedDay }) {
     allTrainings();
   }, [selectedDay, initialTrainings]);
 
-  const handleClick = (trainerName, Id) => {
+  const handleClick = (trainerName) => {
     navigate("/TrainerInfo", {
-      state: { trainerName: trainerName, trainerId: Id },
+      state: { trainerName: trainerName },
     });
   };
   return (
