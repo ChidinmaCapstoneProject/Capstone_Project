@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UpdateTrainingForm from "./UpdateTrainingForm/UpdateTrainingForm";
 import DeleteTraining from "./DeleteTraining/DeleteTraining";
 import { NO_BOOKINGS, PEOPLE_WHO_BOOKED } from "../../../Utils/StringLiterals";
+import { SOCKET_URL } from "../../../Utils/URLConstants";
+import { io } from "socket.io-client";
 import "./MoreInfo.css";
 
 export default function MoreInfo({ booking }) {
@@ -19,6 +21,8 @@ export default function MoreInfo({ booking }) {
   const { userName } = useContext(AuthContext);
   const [isActive, setIsActive] = useState(false);
   const [isDeleteActive, setIsDeleteActive] = useState(false);
+
+  const socket = io(SOCKET_URL);
 
   const [whoBooked, setWhoBooked] = useLocalStorage("whoBooked", []);
 
@@ -38,7 +42,18 @@ export default function MoreInfo({ booking }) {
     }
 
     fetchedAllBookings();
-  }, []);
+    socket.on("updateTraining", (update) => {
+      if (training._id === update.ID) {
+        for (var key in training) {
+          if (Object.keys(update).includes(key)) {
+            training[key] = update[key];
+          }
+        }
+      }
+
+      fetchedAllBookings();
+    });
+  }, [training]);
   return (
     <>
       <NavBar />
