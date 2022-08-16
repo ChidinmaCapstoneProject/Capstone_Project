@@ -23,7 +23,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  background-color: rgba(224, 40, 37, 0.742);
+  background-color: coral;
   margin-left: 35%;
   margin-top: 10%;
 }
