@@ -5,6 +5,11 @@
 ### Starting the app
 
 ```
+cd capstone-ui
+npm start
+```
+```
+cd capstone-express-api
 npm start
 ```
 User Stories-
