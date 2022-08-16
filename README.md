@@ -1,8 +1,16 @@
 # Capstone_Project
 <p>
-<strong>Running Code</strong>
-npm start to run code in the terminal for both capstone-express-api and capstone-ui. Seperate terminals for each folder.
-<p>
+## Command
+
+### Starting the app
+
+```
+ng serve [--open --port 8080/8443 --liveReload true/false --proxy-config proxy.conf.json --target Build --environment --ssl true/false --ssl-key ssl/server.key --ssl-cert ssl/server.cert --aot true/false]
+
+or
+
+npm start
+```
 User Stories-
 'As a client', I want to see a list of trainers and what type odf training they provide; I also want to be able to see the price , date and time of the appointment, and review section of the trainer before booking<br/>
 'As a trainer', I want to be able to post my training type, price , and time for the clients to see.<br/>
