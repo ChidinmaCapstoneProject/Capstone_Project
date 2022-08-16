@@ -63,7 +63,7 @@ mongoose.connection.once("open", () => {
   const reviewStream = reviewCollection.watch();
   changeStream.on("change", (change) => {
     const training = change.fullDocument;
-    const updateTraining=change?.updateDescription?.updatedFields;
+    const updateTraining=change.updateDescription.updatedFields;
     switch (change.operationType) {
       case "insert":
         const Training = {

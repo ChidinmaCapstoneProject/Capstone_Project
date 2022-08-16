@@ -42,6 +42,7 @@ const handleNewTraining = async (req, res) => {
 
     res.status(201).json({ success: `New Training for' ${userName} created` });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };
