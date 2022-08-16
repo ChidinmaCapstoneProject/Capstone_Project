@@ -1,5 +1,8 @@
 # Capstone_Project
-
+<p>
+<strong>Running Code</strong>
+npm start to run code in the terminal for both capstone-express-api and capstone-ui. Seperate terminals for each folder.
+<p>
 User Stories-
 'As a client', I want to see a list of trainers and what type odf training they provide; I also want to be able to see the price , date and time of the appointment, and review section of the trainer before booking<br/>
 'As a trainer', I want to be able to post my training type, price , and time for the clients to see.<br/>
@@ -67,7 +70,8 @@ For the findTraining, and all bookings page, I added a lime light to the bottom 
 <br/><br/>
 
 **Week 8- ** <br/><br/>
-
-Changed filtering parameters to id instead of name due to the possibility of more than one user with the same name. 
+<p>Changed filtering parameters to id instead of name due to the possibility of more than one user with the same name. <br/>
+Included real time update with mongodb change streams and socket io to enable a real time change when a trainer inserts deletes or updates the trainings.<br/>.
+The real time updates will be made when the trainee is looking for training or if the trainee has booked already. 
  
 
