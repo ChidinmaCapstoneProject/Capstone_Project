@@ -12,7 +12,8 @@ npm start
 cd capstone-express-api
 npm start
 ```
-        <strong>User Stories</strong><br/> <br/>
+        
+<strong>User Stories</strong><br/> <br/>
 'As a client', I want to see a list of trainers and what type odf training they provide; I also want to be able to see the price , date and time of the appointment, and review section of the trainer before booking<br/>
 'As a trainer', I want to be able to post my training type, price , and time for the clients to see.<br/>
 'All Users', Should be able to chat with either trainers or clients ,and join a video call when it's time for the appointment.<br/>
