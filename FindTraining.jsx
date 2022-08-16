@@ -17,8 +17,9 @@ import ScheduledTraining from "./ScheduledTrainers/ScheduledTraining";
 import { io } from "socket.io-client";
 import NavBar from "../../NavBar/NavBar";
 import "./FindTraining.css";
+import { SOCKET_URL } from "../../../Utils/URLConstants";
 import FindTrainingCalender from "./FindTrainingCalender";
-const socket = io("http://localhost:8900");
+const socket = io(SOCKET_URL);
 
 export default function FindTraining() {
   let tommorow = startOfTomorrow();
@@ -49,9 +50,6 @@ export default function FindTraining() {
       getTrainings();
     });
     socket.on("deletedTraining", (id) => {
-      const updatedTraining = allTrainings.filter((training) => {
-        return training._id !== id;
-      });
       getTrainings();
     });
   }, []);
