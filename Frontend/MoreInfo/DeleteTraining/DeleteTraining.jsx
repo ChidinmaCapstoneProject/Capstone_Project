@@ -1,12 +1,7 @@
 import axios from "../../../../api/axios";
 import "./DeleteTraining.css";
 import { useNavigate } from "react-router-dom";
-import { TRAININGS_URL, BOOKINGS_URL } from "../../../../Utils/URLConstants";
-export default function DeleteTraining({
-  training,
-  whoBooked,
-  setIsDeleteActive,
-}) {
+export default function DeleteTraining({ training, setIsDeleteActive }) {
   const navigate = useNavigate();
   async function handleDelete() {
     try {
@@ -14,13 +9,13 @@ export default function DeleteTraining({
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      const res = await axios.delete(BOOKINGS_URL + "/" + training._id, {
+      const resp = await axios.delete("/booking/" + "/" + training._id, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
       navigate("/ViewTrainerBookings");
     } catch (err) {
-      console.log("err", err);
+      console.log("err: ", err);
     }
   }
   return (
