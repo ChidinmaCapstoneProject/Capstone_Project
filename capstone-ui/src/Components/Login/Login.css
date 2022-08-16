@@ -1,0 +1,26 @@
+.login-div {
+  width: 100%;
+  max-width: 440px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgb(98, 121, 226);
+  margin-left: 35%;
+  margin-top: 10%;
+}
+div form input {
+  width: 90%;
+}
+.go-to-home {
+  width: 100%;
+  max-width: 440px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: rgb(98, 121, 226);
+  margin-left: 35%;
+  margin-top: 10%;
+}

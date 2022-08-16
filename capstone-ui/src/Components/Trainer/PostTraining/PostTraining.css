@@ -1,0 +1,23 @@
+/* @import url("https://cdn.syncfusion.com/ej2/material.css"); */
+/* .post-training{
+    width: 50%;
+    max-width: 440px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 1rem;
+    background-color: rgba(224, 40, 37, 0.742) */
+/* }  */
+div form input {
+  width: 50%;
+}
+.description {
+  height: 100px;
+}
+/* .setTime {
+  box-sizing: content-box !important;
+} */
+/* .start {
+  position: absolute;
+} */
