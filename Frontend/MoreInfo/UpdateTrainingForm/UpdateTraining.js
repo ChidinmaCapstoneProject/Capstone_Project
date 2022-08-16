@@ -10,7 +10,7 @@ export async function UpdateTraining (trainingInfo, timeRange, training){
             const day= trainingInfo.day;
             const description= trainingInfo.description;
             const slots= trainingInfo.slots;
-            const trainingId= training._id;
+
             const response = await axios.put('/training/'+training._id,
             JSON.stringify({
                 email,
@@ -18,6 +18,19 @@ export async function UpdateTraining (trainingInfo, timeRange, training){
                 description,
                 price,
                 slots,
+                day,
+                startTime,
+                endTime,
+              }),
+              {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
+              }
+            )
+            const res = await axios.put('/booking/'+training._id,
+            JSON.stringify({
+
+                trainingType,
                 day,
                 startTime,
                 endTime,
